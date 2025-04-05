@@ -2,14 +2,23 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Staff from "./pages/Staff";
+import AlumniConnect from "./pages/AlumniConnect";
+import Elsoc from "./pages/Elsoc";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<h1>Welcome to ECE Department</h1>} />
+        <Route path="/staff" element={<Staff />} />
+        <Route path="/alumni-connect" element={<AlumniConnect />} />
+        <Route path="/elsoc" element={<Elsoc />} />
       </Routes>
     </Router>
   );
