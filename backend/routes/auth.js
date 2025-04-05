@@ -1,8 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const router = express.Router();
+
+const JWT_SECRET = 'your_jwt_secret_key'; // 🔐 Replace with a strong secret, store in .env later
 
 // Register
 router.post('/register', async (req, res) => {
@@ -33,7 +36,14 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-    res.status(200).json({ message: 'Login successful 🎉' });
+    // ✅ Generate JWT token
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+
+    res.status(200).json({
+      message: 'Login successful 🎉',
+      token,                  // Send token to frontend
+      user: { id: user._id, email: user.email } // Optional: send user info
+    });
   } catch (err) {
     res.status(500).json({ message: 'Something went wrong 🚨' });
   }
