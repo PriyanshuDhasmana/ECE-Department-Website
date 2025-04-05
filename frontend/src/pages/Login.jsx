@@ -1,11 +1,12 @@
+// frontend/src/pages/Login.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,15 +23,14 @@ const Login = () => {
 
       const data = await res.json();
 
-      if (res.ok) {
-        localStorage.setItem("token", data.token); // Save token
-        navigate("/dashboard"); // Redirect on success
-      } else {
-        setError(data.message);
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
       }
+
+      localStorage.setItem("token", data.token);
+      navigate("/dashboard");
     } catch (err) {
-      console.error(err);
-      setError("Login failed. Please try again.");
+      setError(err.message);
     }
   };
 
@@ -55,6 +55,10 @@ const Login = () => {
         /><br />
         <button type="submit">Login</button>
       </form>
+
+      <p style={{ marginTop: "10px" }}>
+        New here? <Link to="/register">Register now</Link>
+      </p>
     </div>
   );
 };

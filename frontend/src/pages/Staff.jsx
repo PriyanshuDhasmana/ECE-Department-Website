@@ -27,17 +27,33 @@ const Staff = () => {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h2>Our Esteemed Staff</h2>
-      <ul>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
         {staffList.map((staff) => (
-          <li key={staff._id}>
-            <strong>{staff.name}</strong> - {staff.position} <br />
-            {staff.email}
-            <hr />
-          </li>
+          <div
+            key={staff._id}
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              padding: "15px",
+              width: "250px",
+            }}
+          >
+            {staff.image && (
+              <img
+                src={staff.image}
+                alt={staff.name}
+                style={{ width: "100%", borderRadius: "4px" }}
+              />
+            )}
+            <h3>{staff.name}</h3>
+            <p><strong>Position:</strong> {staff.position}</p>
+            <p><strong>Email:</strong> {staff.email}</p>
+            {staff.phone && <p><strong>Phone:</strong> {staff.phone}</p>}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ const dashboardRoutes = require('./routes/dashboard');
 const staffRoutes = require('./routes/staff');
 const alumniRoutes = require('./routes/alumni'); 
 const elsocRoutes = require('./routes/elsoc');
+const registerRoute = require("./routes/register"); 
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/staff', staffRoutes);
 app.use('/api/alumni', alumniRoutes);
-app.use('/api/elsoc', elsocRoutes); 
+app.use('/api/elsoc', elsocRoutes);
+app.use("/api/register", registerRoute);
 
 app.get('/', (req, res) => {
   res.send('API is running');

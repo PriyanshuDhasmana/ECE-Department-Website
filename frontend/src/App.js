@@ -7,6 +7,8 @@ import Staff from "./pages/Staff";
 import AlumniConnect from "./pages/AlumniConnect";
 import Elsoc from "./pages/Elsoc";
 import Navbar from "./components/Navbar";
+import Register from "./pages/Register";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/staff" element={<Staff />} />
         <Route path="/alumni-connect" element={<AlumniConnect />} />
         <Route path="/elsoc" element={<Elsoc />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
