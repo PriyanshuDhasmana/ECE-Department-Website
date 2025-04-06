@@ -1,6 +1,6 @@
-// frontend/src/pages/Login.jsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +27,6 @@ const Login = () => {
         throw new Error(data.message || "Login failed");
       }
 
-      // ✅ Store token and role correctly
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
 
@@ -38,30 +37,31 @@ const Login = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Login</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        /><br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        /><br />
-        <button type="submit">Login</button>
-      </form>
-
-      <p style={{ marginTop: "10px" }}>
-        New here? <Link to="/register">Register now</Link>
-      </p>
+    <div className="login-container">
+      <div className="login-box">
+        <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p className="register-link">
+          New here? <Link to="/register">Register now</Link>
+        </p>
+      </div>
     </div>
   );
 };

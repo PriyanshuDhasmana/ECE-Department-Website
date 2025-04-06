@@ -1,0 +1,100 @@
+/* frontend/src/pages/Register.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #000000, #1a1a1a);
+  color: white;
+  padding: 20px;
+}
+
+.register-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00f0ff;
+}
+
+.register-status {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.register-status.error {
+  color: #ff4d4f;
+}
+
+.register-status.success {
+  color: #66ff99;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-form input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #121212;
+  color: white;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.register-form input:focus {
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 8px #00f0ff66;
+}
+
+.register-form button {
+  padding: 12px;
+  background-color: #00f0ff;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.register-form button:hover {
+  background-color: #00cce0;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #00f0ff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

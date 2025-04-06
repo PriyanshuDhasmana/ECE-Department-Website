@@ -1,0 +1,66 @@
+.home {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    width: 100vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    box-shadow: inset 0 1px 0 rgba(0, 240, 255, 0.08);
+  }
+  
+  .home-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px 10px;
+    text-align: center;
+  }
+  
+  .home-section h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #00f0ff, #3f7eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+  }
+  
+  .home-section p {
+    font-size: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-align: justify; /* ✅ This justifies the paragraph text */
+  }
+  
+  .vision-mission-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 40px 10px;
+    width: 100%;
+    max-width: 1100px;
+  }
+  
+  .vision, .mission {
+    flex: 1 1 400px;
+    max-width: 500px;
+    text-align: justify; /* ✅ Justify inside vision and mission */
+  }
+  
+  .vision h1, .mission h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #00f0ff, #3f7eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    text-align: center; /* Keep headings centered */
+  }
+  
+  .vision p, .mission p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
