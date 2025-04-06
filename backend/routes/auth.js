@@ -26,27 +26,39 @@ router.post('/register', async (req, res) => {
 });
 
 // Login
+// Login
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: 'User not found ❌' });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
-
-    // ✅ Generate JWT token
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(200).json({
-      message: 'Login successful 🎉',
-      token,                  // Send token to frontend
-      user: { id: user._id, email: user.email } // Optional: send user info
-    });
-  } catch (err) {
-    res.status(500).json({ message: 'Something went wrong 🚨' });
-  }
-});
+    const { email, password } = req.body;
+  
+    try {
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ message: 'User not found ❌' });
+  
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+  
+      // ✅ Generate JWT token with role
+      const token = jwt.sign(
+        { id: user._id, role: user.role }, // include role
+        JWT_SECRET,
+        { expiresIn: '1h' }
+      );
+  
+      // ✅ Send token and role in response
+      res.status(200).json({
+        message: 'Login successful 🎉',
+        token,
+        user: {
+          id: user._id,
+          email: user.email,
+          role: user.role // <-- Added this line
+        }
+      });
+  
+    } catch (err) {
+      res.status(500).json({ message: 'Something went wrong 🚨' });
+    }
+  });
+  
 
 module.exports = router;

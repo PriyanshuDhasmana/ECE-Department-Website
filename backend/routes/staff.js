@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Staff = require('../models/Staff'); // Import Staff model
+const auth = require('../middleware/auth'); // Auth middleware
+const authorizeRoles = require('../middleware/role'); // Role-based authorization middleware
 
-// GET all staff
+// GET all staff (Accessible to everyone)
 router.get('/', async (req, res) => {
   try {
     const staff = await Staff.find();
@@ -12,8 +14,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST a new staff member
-router.post('/', async (req, res) => {
+// POST a new staff member (Accessible only to admin)
+router.post('/', auth, authorizeRoles('admin'), async (req, res) => {
   const { name, position, department, email, phone, image } = req.body;
 
   const newStaff = new Staff({

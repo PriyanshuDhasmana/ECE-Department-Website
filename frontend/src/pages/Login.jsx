@@ -27,7 +27,10 @@ const Login = () => {
         throw new Error(data.message || "Login failed");
       }
 
+      // ✅ Store token and role correctly
       localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.user.role);
+
       navigate("/dashboard");
     } catch (err) {
       setError(err.message);
@@ -35,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -12,53 +13,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={styles.navbar}>
-      <h2 style={styles.logo}>ECE Dept</h2>
-      <div style={styles.links}>
-        <Link to="/" style={styles.link}>Home</Link>
-        <Link to="/staff" style={styles.link}>Staff</Link>
-        <Link to="/alumni" style={styles.link}>Alumni Connect</Link>
-        <Link to="/elsoc" style={styles.link}>ELSOC</Link>
-        {isLoggedIn && <Link to="/dashboard" style={styles.link}>Dashboard</Link>}
-        {!isLoggedIn ? (
-          <Link to="/login" style={styles.link}>Login</Link>
-        ) : (
-          <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
-        )}
+    <nav className="navbar">
+      <div className="navbar-container">
+        <div className="navbar-logo">
+          ECE <span className="dept">Dept</span>
+        </div>
+        <div className="navbar-links">
+          <Link to="/">Home</Link>
+          <Link to="/staff">Staff</Link>
+          <Link to="/alumni">Alumni Connect</Link>
+          <Link to="/elsoc">ELSOC</Link>
+          {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
+          {!isLoggedIn ? (
+            <Link to="/login" className="login-btn">Login</Link>
+          ) : (
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+          )}
+        </div>
       </div>
     </nav>
   );
-};
-
-const styles = {
-  navbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-    backgroundColor: "#282c34",
-  },
-  logo: {
-    color: "#fff",
-    margin: 0,
-  },
-  links: {
-    display: "flex",
-    gap: "15px",
-    alignItems: "center",
-  },
-  link: {
-    color: "#fff",
-    textDecoration: "none",
-    fontWeight: "bold",
-  },
-  logoutButton: {
-    background: "none",
-    border: "none",
-    color: "#fff",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
 };
 
 export default Navbar;
