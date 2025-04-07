@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Staff from "./pages/Staff";
 import AlumniConnect from "./pages/AlumniConnect";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/alumni-connect" element={<AlumniConnect />} />
         <Route path="/elsoc" element={<Elsoc />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );

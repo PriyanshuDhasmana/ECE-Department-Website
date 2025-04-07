@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['admin', 'student'],
-    default: 'student', // Default role
+    default: 'student',
+  },
+  resetOTP: {
+    type: String,
+  },
+  otpExpiry: {
+    type: Date,
   }
 });
 

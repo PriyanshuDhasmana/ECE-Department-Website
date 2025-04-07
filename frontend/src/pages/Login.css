@@ -77,4 +77,19 @@
   .register-link a:hover {
     text-decoration: underline;
   }
+
+  .forgot-link {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .forgot-link a {
+    color: #00f0ff;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .forgot-link a:hover {
+    text-decoration: underline;
+  }
   

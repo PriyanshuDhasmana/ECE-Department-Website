@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const crypto = require('crypto');
 
 const router = express.Router();
 
@@ -24,6 +25,31 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Something went wrong 🚨' });
   }
 });
+
+// Forgot Password Route
+router.post('/forgot-password', async (req, res) => {
+    const { email } = req.body;
+  
+    try {
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ message: 'User not found ❌' });
+  
+      // Generate a random 6-digit OTP
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  
+      // (Optional) You can hash & store the OTP with expiry in DB if needed
+      user.resetOTP = otp;
+      user.otpExpiry = Date.now() + 10 * 60 * 1000; // 10 minutes from now
+      await user.save();
+  
+      // ⚠️ In production, send via email. For now, just return the OTP
+      res.status(200).json({ message: 'OTP generated ✅', otp });
+  
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Something went wrong 🚨' });
+    }
+  });
 
 // Login
 // Login
